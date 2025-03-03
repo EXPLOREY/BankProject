@@ -7,27 +7,33 @@ class Account {
     AccountType accountType;
     int score;
 
-    public Account(String name, int nationalCode, String city, int bankBranchNum, double accBalance, AccountType accountType) {
+    enum AccountType {
+        SAVING_ACC,
+        SALARY_ACC,
+        NRI;
+    }
+
+    public Account(String name, int nationalCode, String city, int bankBranchNum, double accBalance, String accountTypeString) {
         this.name = name;
         this.nationalCode = nationalCode;
         this.city = city;
         this.bankBranchNum = bankBranchNum;
         this.accBalance = accBalance;
-        this.accountType = accountType;
+        this.accountType = AccountType.valueOf(accountTypeString.toUpperCase());
         this.score = 0;
     }
 
-    public Account(String name, int nationalCode, int bankBranchNum, double accBalance, AccountType accountType) {
-        this(name, nationalCode, "Esfahan", bankBranchNum, accBalance, accountType);
+    public Account(String name, int nationalCode, int bankBranchNum, double accBalance, String accountTypeString) {
+        this(name, nationalCode, "Esfahan", bankBranchNum, accBalance, accountTypeString);
     }
 
-    public Account(String name, int nationalCode, String city, int bankBranchNum, AccountType accountType) {
-        this(name, nationalCode, city, bankBranchNum, 2000, accountType);
+    public Account(String name, int nationalCode, String city, int bankBranchNum, String accountTypeString) {
+        this(name, nationalCode, city, bankBranchNum, 2000, accountTypeString);
 
     }
 
-    public Account(String name, int nationalCode, int bankBranchNum, AccountType accountType) {
-        this(name, nationalCode, "Esfahan", bankBranchNum, 2000, accountType);
+    public Account(String name, int nationalCode, int bankBranchNum, String accountTypeString) {
+        this(name, nationalCode, "Esfahan", bankBranchNum, 2000, accountTypeString);
     }
 
     public void checkAccountBalance() {
@@ -134,12 +140,6 @@ class Account {
 }
 
 
-enum AccountType {
-    SAVING_ACC,
-    SALARY_ACC,
-    NRI;
-}
-
 enum LoansType {
     BUSINESS(7000),
     STUDENT(2000),
@@ -161,7 +161,7 @@ enum LoansType {
 public class Main {
 
     public static void main(String[] args) {
-        Account account1 = new Account("Ftm", 123, "Tehran", 11, 50000, AccountType.SAVING_ACC);
+        Account account1 = new Account("Ftm", 123, "Tehran", 11, 50000, "SAVING_ACC");
 
         account1.checkAccountBalance();
         account1.withdraw(5000);
