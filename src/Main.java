@@ -136,12 +136,6 @@ class Account {
         }
     }
 
-    public double credit = 0;
-
-    public double credit() {
-        return this.accBalance;
-    }
-
 
 }
 
@@ -180,7 +174,7 @@ public class Main {
         System.out.println(account1.loanRequest("Ftm", 124, 400));
         System.out.println(account1.loanRequest("Ftm", 123, 400));
         System.out.println(account1.loanRequest("Ftm", 123, "BUSINESS"));
-        System.out.println(account1.credit());
+        System.out.println(account1.accBalance);
     }
 }
 
